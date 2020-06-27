@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenters.LoginActivity"
-    style="@style/AppTheme.NoActionBar">
+    tools:context=".activites.login.LoginActivity">
 
     <FrameLayout
         android:id="@+id/headerLayout"
@@ -19,21 +19,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/headerTextView"
-            style="@style/headerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/app_name" />
-
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/headerTextView"
+        style="@style/headerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="@+id/headerLayout"
+        app:layout_constraintStart_toStartOf="@+id/headerLayout"
+        app:layout_constraintTop_toTopOf="@+id/headerLayout" />
 
     <androidx.cardview.widget.CardView
         style="@style/loginCard"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="@dimen/loginViewsMargin"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="@dimen/loginViewsMargin"
         android:background="@color/whiteCardColor"
@@ -42,8 +45,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/headerLayout"
-        app:layout_constraintVertical_bias=".26">
+        app:layout_constraintTop_toBottomOf="@+id/headerTextView"
+        app:layout_constraintVertical_bias="0.06999999">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,6 +76,8 @@
                     android:textColorHint="@color/colorAccent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/firstNameTextField"
+                        style="@style/modifiedEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -85,18 +90,22 @@
                     android:textColorHint="@color/colorAccent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastNameTextField"
+                        style="@style/modifiedEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_text_margin_top"
                 android:textColorHint="@color/primaryTextColor">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailTextField"
                     style="@style/modifiedEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,6 +114,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_text_margin_top"
@@ -112,6 +122,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordTextField"
                     style="@style/modifiedEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,6 +131,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPasswordTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_text_margin_top"
@@ -127,6 +139,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasswordTextField"
                     style="@style/modifiedEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,7 +147,28 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_marginBottom="@dimen/loginViewsMargin"
+                android:orientation="horizontal"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp">
+
+                <Spinner
+                    android:id="@+id/userTypeSpinner"
+                    style="@style/spinnerStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/user_type"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
             <Button
+                android:id="@+id/registerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -147,6 +181,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/AlreadyHaveAccountTextView"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:layout_marginBottom="@dimen/loginViewsMargin"
@@ -156,5 +191,14 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/loadingIndicator"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:indicatorColor="@color/colorPrimaryDark"
+            app:indicatorName="BallPulseIndicator" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

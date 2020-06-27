@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Physiatry</string>
+    <string name="app_name">Psychiatry</string>
 
     <string name="login">Login</string>
     <string name="register">REGISTER</string>
@@ -13,4 +13,8 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="confirm_password">Confirm Password</string>
+    <string-array name="user_type">
+        <item>Patient</item>
+        <item>Doctor</item>
+    </string-array>
 </resources>

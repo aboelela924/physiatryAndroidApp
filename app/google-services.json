@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "29063814495",
+    "firebase_url": "https://psychiatry-5d5a0.firebaseio.com",
+    "project_id": "psychiatry-5d5a0",
+    "storage_bucket": "psychiatry-5d5a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29063814495:android:65fdd179e8e1206392eaea",
+        "android_client_info": {
+          "package_name": "com.aboelela924.android.physiatry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29063814495-3vf82su9qjgj1np8l2lpciu361t6la5f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx7AM6vGnh2EmiQH0ewy4Q-aXP7JMS9Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29063814495-3vf82su9qjgj1np8l2lpciu361t6la5f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
