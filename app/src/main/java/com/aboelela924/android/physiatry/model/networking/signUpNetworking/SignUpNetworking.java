@@ -1,10 +1,9 @@
-package com.aboelela924.android.physiatry.networking.signUpNetworking;
+package com.aboelela924.android.physiatry.model.networking.signUpNetworking;
 
 import android.app.Activity;
 
 import androidx.annotation.NonNull;
 
-import com.aboelela924.android.physiatry.presenters.signup.ISignUpPresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,9 +28,9 @@ public class SignUpNetworking {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
-                            SignUpNetworking.this.mPresenter.onSignUpSuccess(user);
+                            SignUpNetworking.this.mPresenter.onSuccess(user);
                         }else{
-                            SignUpNetworking.this.mPresenter.onSignUpFailure();
+                            SignUpNetworking.this.mPresenter.onFailure(task.getException().getMessage());
                         }
                     }
                 });

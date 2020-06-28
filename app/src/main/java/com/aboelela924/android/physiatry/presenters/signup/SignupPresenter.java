@@ -1,27 +1,39 @@
 package com.aboelela924.android.physiatry.presenters.signup;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.aboelela924.android.physiatry.activites.signup.ISignupView;
-import com.aboelela924.android.physiatry.networking.signUpNetworking.SignUpNetworking;
+import com.aboelela924.android.physiatry.model.dataModeling.User;
+import com.aboelela924.android.physiatry.model.networking.signUpNetworking.ISignUpPresenter;
+import com.aboelela924.android.physiatry.model.networking.signUpNetworking.SignUpNetworking;
+import com.aboelela924.android.physiatry.model.networking.writeToDB.IWriteToDBPresenter;
+import com.aboelela924.android.physiatry.model.networking.writeToDB.WriteToDBNetworking;
 import com.aboelela924.android.physiatry.utils.DataChecking;
 import com.aboelela924.android.physiatry.utils.DialoguesUtils;
-import com.google.android.gms.common.util.DataUtils;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignupPresenter implements ISignUpPresenter {
+public class SignupPresenter implements ISignUpPresenter, IWriteToDBPresenter {
     private ISignupView mView;
     private SignUpNetworking mSignUpNetworking;
+    private WriteToDBNetworking mWriteToDBNetworking;
     private Activity mActivity;
+    private FirebaseUser mFirebaseUser;
+    private User mUser;
 
     public SignupPresenter(ISignupView view, Activity activity){
         this.mView = view;
         this.mActivity = activity;
         mSignUpNetworking = new SignUpNetworking(this);
+        mWriteToDBNetworking = new WriteToDBNetworking(this);
     }
 
     public void signUpUser(Activity a, String email, String password, String firstName, String lastName, int type){
+
+        mUser = new User(email);
+        mUser.setFirstName(firstName);
+        mUser.setLastName(lastName);
+        mUser.setType(type);
+
         mView.showProgressBar();
         if(DataChecking.isEmpty(email)
         && DataChecking.isEmpty(password)
@@ -33,17 +45,7 @@ public class SignupPresenter implements ISignUpPresenter {
         }
     }
 
-    @Override
-    public void onSignUpSuccess(FirebaseUser user) {
-        mView.hideProgressBar();
-        DialoguesUtils.showSuccessMessage(mActivity,"Login", "Login Successfully");
-    }
 
-    @Override
-    public void onSignUpFailure() {
-        mView.hideProgressBar();
-        DialoguesUtils.showErrorMessage(mActivity, "Login", "Unable to login, please try agagin.");
-    }
 
     public void checkEmail(String email){
         if(!DataChecking.isValidEmail(email)){
@@ -69,4 +71,26 @@ public class SignupPresenter implements ISignUpPresenter {
         }
     }
 
+    @Override
+    public void onSuccess(FirebaseUser user) {
+        mFirebaseUser = user;
+        mUser.setId(user.getUid());
+        mWriteToDBNetworking.writeUserData(mFirebaseUser.getUid(), mUser);
+    }
+
+    @Override
+    public void onSuccess(String message) {
+        mView.hideProgressBar();
+        DialoguesUtils.showSuccessMessage(mActivity,"Login", "Login Successfully");
+    }
+
+    @Override
+    public void onFailure(String message) {
+        mView.hideProgressBar();
+        if(message.isEmpty()){
+            DialoguesUtils.showErrorMessage(mActivity, "Login", "Unable to login, please try agagin.");
+        }else{
+            DialoguesUtils.showErrorMessage(mActivity, "Login", message);
+        }
+    }
 }

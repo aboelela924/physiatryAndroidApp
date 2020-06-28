@@ -1,5 +1,6 @@
 package com.aboelela924.android.physiatry.activites.signup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.Spinner;
 
 import com.aboelela924.android.physiatry.R;
 import com.aboelela924.android.physiatry.activites.BasicActivity;
+import com.aboelela924.android.physiatry.activites.login.LoginActivity;
 import com.aboelela924.android.physiatry.presenters.signup.SignupPresenter;
 import com.google.android.material.textfield.TextInputLayout;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -56,7 +58,9 @@ public class SignupActivity extends BasicActivity implements ISignupView {
 
     @OnClick(R.id.AlreadyHaveAccountTextView)
     public void goToLogin(){
-
+        Intent i = new Intent(this, LoginActivity.class);
+        finish();
+        startActivity(i);
     }
 
     @OnTextChanged(value = R.id.emailTextField, callback = OnTextChanged.Callback.TEXT_CHANGED)
@@ -87,11 +91,7 @@ public class SignupActivity extends BasicActivity implements ISignupView {
         mRegisterButton.setEnabled(true);
     }
 
-    @Override
-    public void signupClick() {
 
-
-    }
 
     @Override
     public void notValidEmail() {
@@ -131,8 +131,5 @@ public class SignupActivity extends BasicActivity implements ISignupView {
         mRegisterButton.setEnabled(true);
     }
 
-    @Override
-    public void moveToLogin() {
 
-    }
 }
