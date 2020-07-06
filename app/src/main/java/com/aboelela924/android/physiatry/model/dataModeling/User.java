@@ -3,6 +3,9 @@ package com.aboelela924.android.physiatry.model.dataModeling;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @IgnoreExtraProperties
 public class User {
     @Exclude
@@ -69,5 +72,27 @@ public class User {
 
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("email", email);
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+        result.put("type", type);
+
+        return result;
+    }
+
+    @Exclude
+    public static User fromMap(HashMap data) {
+        User user = new User();
+        user.setEmail(String.valueOf(data.get("email")));
+        user.setFirstName(String.valueOf(data.get("firstName")));
+        user.setLastName(String.valueOf(data.get("lastName")));
+        user.setType(Integer.valueOf(String.valueOf(data.get("type"))));
+
+        return user;
     }
 }

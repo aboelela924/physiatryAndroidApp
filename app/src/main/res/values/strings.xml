@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Psychiatry</string>
 
+    <string name="shared_preference_key">shared_preference_key</string>
+    
     <string name="login">Login</string>
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>
@@ -17,4 +19,21 @@
         <item>Patient</item>
         <item>Doctor</item>
     </string-array>
+
+    
+    <!-- profile fragment strings -->
+    <string name="edi_profile">Edit Profile</string>
+    <string name="scheduled">Scheduled</string>
+    <string name="written_task_answers">Written tasks answers</string>
+    <string name="logout">Logout</string>
+
+    <!-- Home activity strings -->
+    <string name="profile">Profile</string>
+    <string name="articles">Articles</string>
+    <string name="quizes">Quizes</string>
+
+    
+    <string name="hello_articles_fragment">Hello Articles fragment</string>
+    <string name="hello_quizes_fragment">Hello Quizes fragment</string>
+    <string name="hello_profile_fragment">Hello Profile fragment</string>
 </resources>

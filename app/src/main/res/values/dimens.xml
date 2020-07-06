@@ -6,4 +6,6 @@
     <dimen name="loginViewsMargin">20dp</dimen>
 
     <dimen name="signup_text_margin_top">10dp</dimen>
+
+    <dimen name="detail_backdrop_height">256dp</dimen>
 </resources>

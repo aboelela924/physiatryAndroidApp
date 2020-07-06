@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aboelela924.android.physiatry.R;
+import com.aboelela924.android.physiatry.activites.home.HomeActivity;
 import com.aboelela924.android.physiatry.activites.signup.SignupActivity;
 import com.aboelela924.android.physiatry.presenters.login.LoginPresenter;
 import com.aboelela924.android.physiatry.utils.DialoguesUtils;
@@ -37,7 +38,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(this, this);
+        mPresenter.checkUser();
     }
 
     @Override
@@ -48,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
     @OnClick(R.id.loginButton)
     public void onLoginClick(){
         mPresenter.login(mEmailEditText.getText().toString(),
-                mPasswordTextField.getText().toString());
+                mPasswordTextField.getText().toString(), false);
     }
 
     @OnClick(R.id.dontHaveAccountTextView)
@@ -70,7 +72,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
 
     @Override
     public void showSuccess(String title, String message) {
-        DialoguesUtils.showSuccessMessage(this, title, message);
+        //DialoguesUtils.showSuccessMessage(this, title, message);
+        startActivity(HomeActivity.getIntent(this));
     }
 
     @Override
