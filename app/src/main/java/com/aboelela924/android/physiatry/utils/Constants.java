@@ -12,7 +12,7 @@ public class Constants {
     //sharedpreferences constats
     public final static String sp_email_key = "EMAIL";
     public final static String sp_password_key = "PASSWORD";
-
+    public final static String SP_NAME ="USER_DATA";
 
     //storage paths
     public final static String PROFILE_PATH = "profile";

@@ -1,13 +1,17 @@
 package com.aboelela924.android.physiatry.presenters.signup;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 
+import com.aboelela924.android.physiatry.activites.home.HomeActivity;
 import com.aboelela924.android.physiatry.activites.signup.ISignupView;
 import com.aboelela924.android.physiatry.model.dataModeling.User;
 import com.aboelela924.android.physiatry.model.networking.signUpNetworking.ISignUpPresenter;
 import com.aboelela924.android.physiatry.model.networking.signUpNetworking.SignUpNetworking;
 import com.aboelela924.android.physiatry.model.networking.writeToDB.IWriteToDBPresenter;
 import com.aboelela924.android.physiatry.model.networking.writeToDB.WriteToDBNetworking;
+import com.aboelela924.android.physiatry.utils.Constants;
 import com.aboelela924.android.physiatry.utils.DataChecking;
 import com.aboelela924.android.physiatry.utils.DialoguesUtils;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +46,12 @@ public class SignupPresenter implements ISignUpPresenter, IWriteToDBPresenter {
             DialoguesUtils.showErrorMessage(a,"Empty", "Fill all the Fields, Please.");
         }else{
             mSignUpNetworking.signUp(a, email, password);
+            SharedPreferences sp = mActivity.getSharedPreferences(Constants.SP_NAME, mActivity.MODE_PRIVATE);
+            sp.edit()
+                    .putString(Constants.sp_email_key, email)
+                    .putString(Constants.sp_password_key, password)
+                    .apply();
+
         }
     }
 
@@ -81,7 +91,10 @@ public class SignupPresenter implements ISignUpPresenter, IWriteToDBPresenter {
     @Override
     public void onSuccess(String message) {
         mView.hideProgressBar();
-        DialoguesUtils.showSuccessMessage(mActivity,"Login", "Login Successfully");
+        Intent i = new Intent(mActivity, HomeActivity.class);
+        mActivity.startActivity(i);
+        mActivity.finish();
+//        DialoguesUtils.showSuccessMessage(mActivity,"Login", "Login Successfully");
     }
 
     @Override

@@ -4,21 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.aboelela924.android.physiatry.R;
 import com.aboelela924.android.physiatry.activites.BasicActivity;
-import com.aboelela924.android.physiatry.fragments.article.ArticlesFragment;
+import com.aboelela924.android.physiatry.fragments.exercises.ExercisesFragment;
 import com.aboelela924.android.physiatry.fragments.profile.ProfileFragment;
 import com.aboelela924.android.physiatry.fragments.quiz.QuizFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
@@ -49,7 +46,7 @@ public class HomeActivity extends BasicActivity implements BottomNavigationView.
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        mArticlesFragment = new ArticlesFragment();
+        mArticlesFragment = new ExercisesFragment();
         mQuizFragment = new QuizFragment();
         mProfileFragment = new ProfileFragment();
 

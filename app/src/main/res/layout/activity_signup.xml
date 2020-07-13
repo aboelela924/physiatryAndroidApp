@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerTextView"
-        app:layout_constraintVertical_bias="0.06999999">
+        app:layout_constraintVertical_bias="0.15">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -184,7 +184,7 @@
                 android:id="@+id/AlreadyHaveAccountTextView"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
-                android:layout_marginBottom="@dimen/loginViewsMargin"
+                android:layout_marginBottom="10dp"
                 android:text="@string/signup_login_hint"
                 android:textAlignment="center"
                 android:textColor="@color/primaryTextColor"

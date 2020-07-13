@@ -3,11 +3,11 @@ package com.aboelela924.android.physiatry.presenters.profile;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
@@ -51,6 +51,15 @@ public class ProfilePresenter implements IUploadImagePresenter, IDownloadImagePr
 
     public void getUserData(){
         mReadFromDBNetworking.readUser();
+    }
+
+    public void removeUserData(){
+        SharedPreferences pf = mContext.getSharedPreferences(Constants.SP_NAME, Context.MODE_PRIVATE);
+        String email = pf.getString(Constants.sp_email_key, "");
+        pf.edit()
+                .remove(Constants.sp_email_key)
+                .remove(Constants.sp_password_key)
+                .commit();
     }
 
     public void getPermissions(){
@@ -109,11 +118,11 @@ public class ProfilePresenter implements IUploadImagePresenter, IDownloadImagePr
     }
 
     public void loadProfileImage(){
-        mDownloadImageNetworking.getImageURi(Constants.PROFILE_PATH);
+        mDownloadImageNetworking.getProfileImageURi(Constants.PROFILE_PATH);
     }
 
     public void loadCoverImage(){
-        mDownloadImageNetworking.getImageURi(Constants.COVER_PATH);
+        mDownloadImageNetworking.getProfileImageURi(Constants.COVER_PATH);
     }
 
     public void getCoverImageBitmap(Uri uri){

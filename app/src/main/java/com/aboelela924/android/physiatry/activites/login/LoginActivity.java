@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
 
     @Override
     public void showSuccess(String title, String message) {
-        //DialoguesUtils.showSuccessMessage(this, title, message);
         startActivity(HomeActivity.getIntent(this));
     }
 
@@ -96,4 +95,5 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
         mLoadingIndicator.setVisibility(AVLoadingIndicatorView.INVISIBLE);
         mLoginButton.setEnabled(true);
     }
+
 }

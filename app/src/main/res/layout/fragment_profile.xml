@@ -10,7 +10,7 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         card_view:cardElevation="8dp"
         android:outlineSpotShadowColor="#000000">
         <FrameLayout
@@ -104,6 +104,7 @@
             android:orientation="vertical"
             android:layout_margin="8dp">
             <LinearLayout
+                android:id="@+id/edit_profile_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -136,6 +137,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/scheduled_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -169,6 +171,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/written_task_answers_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -202,6 +205,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/logout_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

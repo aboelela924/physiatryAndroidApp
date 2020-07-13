@@ -16,9 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aboelela924.android.physiatry.R;
+import com.aboelela924.android.physiatry.activites.login.LoginActivity;
 import com.aboelela924.android.physiatry.model.dataModeling.User;
 import com.aboelela924.android.physiatry.presenters.profile.ProfilePresenter;
 import com.aboelela924.android.physiatry.utils.DialoguesUtils;
@@ -43,6 +45,10 @@ public class ProfileFragment extends Fragment implements IProfileView{
     @BindView(R.id.profile_image_cirlce_image_view) CircleImageView mProfileImage;
     @BindView(R.id.user_name_text_view) TextView mUsernameTextView;
     @BindView(R.id.email_text_view) TextView mEmailTextView;
+    @BindView(R.id.edit_profile_linear_layout) LinearLayout mEditProfileLinearLayout;
+    @BindView(R.id.scheduled_linear_layout) LinearLayout mScheduledLinearLayout;
+    @BindView(R.id.logout_linear_layout) LinearLayout mLogoutLinearLayout;
+    @BindView(R.id.written_task_answers_linear_layout) LinearLayout mWrittenTasksAnswersLinearLayout;
 
     private ProfilePresenter mPresenter;
 
@@ -69,6 +75,14 @@ public class ProfileFragment extends Fragment implements IProfileView{
         mPresenter.loadCoverImage();
         mPresenter.getUserData();
         return v;
+    }
+
+    @OnClick(R.id.logout_linear_layout)
+    public void logout(){
+        mPresenter.removeUserData();
+        getActivity().finish();
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        getActivity().startActivity(i);
     }
 
     @OnClick(R.id.change_profile_image_image_view)

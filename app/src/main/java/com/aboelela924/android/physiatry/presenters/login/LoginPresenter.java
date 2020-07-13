@@ -29,19 +29,21 @@ public class LoginPresenter implements ILoginPresenter {
         }else{
             mView.showLoadingIndicator();
             mLoginNetworking.loginUser(email,password);
+
             if(!isFromSP){
-                SharedPreferences sp = mActivity.getPreferences(mActivity.MODE_PRIVATE);
+                SharedPreferences sp = mActivity.getSharedPreferences(Constants.SP_NAME, mActivity.MODE_PRIVATE);
                 sp.edit()
                         .putString(Constants.sp_email_key, email)
                         .putString(Constants.sp_password_key, password)
-                        .apply();
+                        .commit();
             }
+
         }
     }
 
 
     public void checkUser(){
-        SharedPreferences sp = mActivity.getPreferences(mActivity.MODE_PRIVATE);
+        SharedPreferences sp = mActivity.getSharedPreferences(Constants.SP_NAME, mActivity.MODE_PRIVATE);
         String email = sp.getString(Constants.sp_email_key,"");
         String password = sp.getString(Constants.sp_password_key, "");
         if(!email.isEmpty() && !password.isEmpty()){
@@ -60,6 +62,7 @@ public class LoginPresenter implements ILoginPresenter {
     @Override
     public void onSuccess(FirebaseUser user) {
         mView.hideLoadingIndicator();
+        mActivity.finish();
         mView.showSuccess("Login", "Login successful");
     }
 
