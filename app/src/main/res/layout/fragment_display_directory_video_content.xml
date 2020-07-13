@@ -4,8 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.displayDirectoryContent.DisplayDirectoryVideoContentFragment">
+    tools:context=".fragments.displayDirectoryContent.DisplayDirectoryVideoContentFragment"
+    android:background="#22000000">
 
+    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
     <ImageView
         android:id="@+id/cover_image_view"
